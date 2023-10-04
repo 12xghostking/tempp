@@ -38,7 +38,7 @@ function AddAppointment() {
       setClients(clientsData);
     }
   }, []);
-
+  
   // Update local storage whenever 'clients' change
   useEffect(() => {
     localStorage.setItem('clientsData', JSON.stringify(clients));
