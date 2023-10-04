@@ -2,7 +2,6 @@ import React, { useState,useEffect } from 'react';
 import { Button, Modal, Table, FormControl, Badge } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Link } from 'react-router-dom';
 
 function AddAppointment() {
   const [showAddModal, setShowAddModal] = useState(false);
