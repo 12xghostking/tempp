@@ -20,8 +20,16 @@ function AddAppointment() {
     { id: 1, firstName: 'John', lastName: 'Doe', location: 'New York', appointments: [] },
     { id: 2, firstName: 'Jane', lastName: 'Smith', location: 'Los Angeles', appointments: [] },
     { id: 3, firstName: 'Mike', lastName: 'Johnson', location: 'Chicago', appointments: [] },
+    { id: 4, firstName: 'Emily', lastName: 'Brown', location: 'Houston', appointments: [] },
+    { id: 5, firstName: 'William', lastName: 'Jones', location: 'Miami', appointments: [] },
+    { id: 6, firstName: 'Olivia', lastName: 'Davis', location: 'Seattle', appointments: [] },
+    { id: 7, firstName: 'Liam', lastName: 'Wilson', location: 'San Francisco', appointments: [] },
+    { id: 8, firstName: 'Sophia', lastName: 'Lee', location: 'Boston', appointments: [] },
+    { id: 9, firstName: 'Lucas', lastName: 'Garcia', location: 'Denver', appointments: [] },
+    { id: 10, firstName: 'Ava', lastName: 'Martinez', location: 'Atlanta', appointments: [] },
     // Add more dummy clients here
   ]);
+  
 
   // Fetch clients data from local storage when the component mounts
   useEffect(() => {
