@@ -10,7 +10,12 @@ function AddAppointment() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedClient, setSelectedClient] = useState(null);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
-
+  const [showAddClientModal, setShowAddClientModal] = useState(false); // Add this state variable
+  const [newClientFormData, setNewClientFormData] = useState({ // Add this state variable
+    firstName: '',
+    lastName: '',
+    location: '',
+  });
   const [formData, setFormData] = useState({
     date: null,
     time: '',
@@ -48,7 +53,28 @@ function AddAppointment() {
     updatedClients[index].firstName = e.target.value;
     setClients(updatedClients);
   };
-  
+  const handleShowAddClientModal = () => { // Function to show "Add Client" modal
+    setShowAddClientModal(true);
+  };
+
+  const handleAddClient = () => { // Function to handle adding a new client
+    const newClient = {
+      id: clients.length + 1, // Generate a new ID based on the current client count
+      ...newClientFormData,
+      appointments: [],
+    };
+
+    const updatedClients = [...clients, newClient];
+    setClients(updatedClients);
+    setNewClientFormData({
+      firstName: '',
+      lastName: '',
+      location: '',
+    });
+
+    // Close the "Add Client" modal
+    setShowAddClientModal(false);
+  };
   const handleLastNameChange = (e, index) => {
     const updatedClients = [...clients];
     updatedClients[index].lastName = e.target.value;
@@ -199,7 +225,12 @@ function AddAppointment() {
   return (
     <div>
         <br></br>
-      <h2>Clients</h2>
+       
+      <h2>Clients</h2> 
+      <Button variant="success" onClick={handleShowAddClientModal}>
+        Add Client
+      </Button>
+      
       <Table striped bordered responsive>
         <thead>
           <tr>
@@ -374,7 +405,45 @@ function AddAppointment() {
           </Button>
         </Modal.Footer>
       </Modal>
-     
+      <Modal show={showAddClientModal} onHide={() => setShowAddClientModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add New Client</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <FormControl
+            type="text"
+            placeholder="First Name"
+            value={newClientFormData.firstName}
+            onChange={(e) =>
+              setNewClientFormData({ ...newClientFormData, firstName: e.target.value })
+            }
+          />
+          <FormControl
+            type="text"
+            placeholder="Last Name"
+            value={newClientFormData.lastName}
+            onChange={(e) =>
+              setNewClientFormData({ ...newClientFormData, lastName: e.target.value })
+            }
+          />
+          <FormControl
+            type="text"
+            placeholder="Location"
+            value={newClientFormData.location}
+            onChange={(e) =>
+              setNewClientFormData({ ...newClientFormData, location: e.target.value })
+            }
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowAddClientModal(false)}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleAddClient}>
+            Add Client
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
